@@ -1,7 +1,9 @@
 WIP:
-  title: "^WIP:.*"
+  titles:
+    - "^WIP:.*"
 WOP:
-  title: "^WOP:.*"
+  titles:
+    - "^WOP:.*"
 S:
   size-below: 10
 M:

@@ -2,8 +2,9 @@
 version: 1
 labels:
   - label: "TestLabel"
-    title: ".*"
+    titles:
+      - ".*"
   - label: "TestFileMatch"
-    files: 
-    - "cmd/.*.go"
-    - "pkg/.*.go"
+    files:
+      - "cmd/.*.go"
+      - "pkg/.*.go"

@@ -2,7 +2,6 @@ package labeler
 
 import (
 	"fmt"
-	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -61,7 +60,7 @@ func TestHandleEvent(t *testing.T) {
 				Labels: []LabelMatcher{
 					{
 						Label: "WIP",
-						Title: "^WIP:.*",
+						Titles: []string{"^WIP:.*"},
 					},
 				},
 			},
@@ -76,7 +75,7 @@ func TestHandleEvent(t *testing.T) {
 				Labels: []LabelMatcher{
 					{
 						Label: "Fix",
-						Title: "Fix: .*",
+						Titles: []string{"Fix: .*"},
 					},
 				},
 			},
@@ -91,7 +90,7 @@ func TestHandleEvent(t *testing.T) {
 				Labels: []LabelMatcher{
 					{
 						Label: "Fix",
-						Title: "^Fix.*",
+						Titles: []string{"^Fix.*"},
 					},
 				},
 			},
@@ -106,11 +105,11 @@ func TestHandleEvent(t *testing.T) {
 				Labels: []LabelMatcher{
 					{
 						Label: "WIP",
-						Title: "^WIP:.*",
+						Titles: []string{"^WIP:.*"},
 					},
 					{
 						Label: "ShouldRemove",
-						Title: "^MEH.*",
+						Titles: []string{"^MEH.*"},
 					},
 				},
 			},
@@ -125,7 +124,7 @@ func TestHandleEvent(t *testing.T) {
 				Labels: []LabelMatcher{
 					{
 						Label:     "WIP",
-						Title:     "^WIP:.*",
+						Titles: []string{"^WIP:.*"},
 						Mergeable: "False",
 					},
 				},
@@ -141,7 +140,7 @@ func TestHandleEvent(t *testing.T) {
 				Labels: []LabelMatcher{
 					{
 						Label:     "WIP",
-						Title:     "^WIP:.*",
+						Titles:    []string{"^WIP:.*"},
 						Mergeable: "True",
 					},
 				},
@@ -159,7 +158,7 @@ func TestHandleEvent(t *testing.T) {
 				Labels: []LabelMatcher{
 					{
 						Label:     "WIP",
-						Title:     "^DOES NOT MATCH:.*",
+						Titles:    []string{"^DOES NOT MATCH:.*"},
 						Mergeable: "False",
 					},
 				},
@@ -366,7 +365,7 @@ func (f *FakeHttpClient) Do(req *http.Request) (*http.Response, error) {
 	}
 
 	diffReader := strings.NewReader(string(data))
-	diffReadCloser := io.NopCloser(diffReader)
+	diffReadCloser := ioutil.NopCloser(diffReader)
 
 	response := http.Response{
 		StatusCode: http.StatusOK,

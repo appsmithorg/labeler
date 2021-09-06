@@ -17,7 +17,7 @@ import (
 
 type LabelMatcher struct {
 	Label      string
-	Title      string
+	Titles     []string
 	Branch     string
 	BaseBranch string `yaml:"base-branch"`
 	Files      []string
@@ -56,11 +56,15 @@ func NewTitleCondition() Condition {
 			return "Title matches regex"
 		},
 		Evaluate: func(pr *gh.PullRequest, matcher LabelMatcher) (bool, error) {
-			if len(matcher.Title) <= 0 {
-				return false, fmt.Errorf("title is not set in config")
+			if len(matcher.Titles) <= 0 {
+				return false, fmt.Errorf("titles are not set in config")
 			}
-			log.Printf("Matching `%s` against: `%s`", matcher.Title, pr.GetTitle())
-			isMatched, _ := regexp.Match(matcher.Title, []byte(pr.GetTitle()))
+			log.Printf("Matching `%s` against: `%s`", matcher.Titles, pr.GetTitle())
+			isMatched := false
+			for _, title := range matcher.Titles {
+				isMatched, _ = regexp.Match(title, []byte(pr.GetTitle()))	
+			}
+			
 			return isMatched, nil
 		},
 	}

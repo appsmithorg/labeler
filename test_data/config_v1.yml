@@ -3,9 +3,11 @@ labels:
   - label: WIP
     branch: "wip"
   - label: WIP
-    title: "^WIP:.*"
+    titles:
+      - "^WIP:.*"
   - label: WOP
-    title: "^WOP:.*"
+    titles:
+      - "^WOP:.*"
   - label: S
     size-below: 10
   - label: M
@@ -14,6 +16,6 @@ labels:
   - label: L
     size-above: 100
   - label: "TestFileMatch"
-    files: 
-    - "cmd/.*.go"
-    - "pkg/.*.go"
+    files:
+      - "cmd/.*.go"
+      - "pkg/.*.go"

@@ -34,11 +34,11 @@ func TestGetLabelerConfigV0(t *testing.T) {
 	expectMatchers := map[string]l.LabelMatcher{
 		"WIP": {
 			Label: "WIP",
-			Title: "^WIP:.*",
+			Titles: []string{"^WIP:.*"},
 		},
 		"WOP": {
 			Label: "WOP",
-			Title: "^WOP:.*",
+			Titles: []string{"^WOP:.*"},
 		},
 		"S": {
 			Label:     "S",
@@ -99,11 +99,11 @@ func TestGetLabelerConfigV1(t *testing.T) {
 			},
 			{
 				Label: "WIP",
-				Title: "^WIP:.*",
+				Titles: []string{"^WIP:.*"},
 			},
 			{
 				Label: "WOP",
-				Title: "^WOP:.*",
+				Titles: []string{"^WOP:.*"},
 			},
 			{
 				Label:     "S",
@@ -158,7 +158,7 @@ func TestGetLabelerConfig2V1(t *testing.T) {
 	expectMatchers := map[string]l.LabelMatcher{
 		"TestLabel": {
 			Label: "TestLabel",
-			Title: ".*",
+			Titles: []string{".*"},
 		},
 		"TestFileMatch": {
 			Label: "TestFileMatch",
