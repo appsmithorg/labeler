@@ -60,7 +60,7 @@ func TestHandleEvent(t *testing.T) {
 				Labels: []LabelMatcher{
 					{
 						Label: "WIP",
-						Titles: []string{"^WIP:.*"},
+						Titles: []string{"^WIP:.*", "^TestWIP:.*" },
 					},
 				},
 			},

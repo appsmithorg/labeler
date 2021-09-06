@@ -59,10 +59,14 @@ func NewTitleCondition() Condition {
 			if len(matcher.Titles) <= 0 {
 				return false, fmt.Errorf("titles are not set in config")
 			}
-			log.Printf("Matching `%s` against: `%s`", matcher.Titles, pr.GetTitle())
+			
 			isMatched := false
 			for _, title := range matcher.Titles {
-				isMatched, _ = regexp.Match(title, []byte(pr.GetTitle()))	
+				log.Printf("Matching `%s` against: `%s`", title, pr.GetTitle())
+				isMatched, _ = regexp.Match(title, []byte(pr.GetTitle()))
+				if (isMatched) {
+					return isMatched, nil
+				}
 			}
 			
 			return isMatched, nil
